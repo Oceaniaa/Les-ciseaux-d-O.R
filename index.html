@@ -253,6 +253,60 @@ a{text-decoration:none;color:inherit}
 .agenda-view-toggle{display:flex;background:var(--bg-secondary);border-radius:var(--radius-sm);padding:2px;gap:2px;border:1.5px solid var(--border)}
 .agenda-view-btn{padding:5px 12px;border-radius:calc(var(--radius-sm) - 2px);font-size:.74rem;font-weight:700;background:none;border:none;cursor:pointer;color:var(--text-muted);transition:all var(--transition-fast)}
 .agenda-view-btn.active{background:var(--surface);color:var(--text);box-shadow:var(--shadow-1)}
+
+/* ================================================================
+   AGENDA — VUE MOIS (type SimpleCal)
+   ================================================================ */
+.month-cal{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-1)}
+.month-cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);background:var(--bg-secondary);border-bottom:1px solid var(--border)}
+.month-cal-weekday{text-align:center;padding:8px 2px;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted)}
+.month-cal-grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.month-cal-day{aspect-ratio:1;border-right:1px solid var(--border-light);border-bottom:1px solid var(--border-light);padding:5px 4px 4px;cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;transition:background var(--transition-fast);min-height:44px}
+.month-cal-day:nth-child(7n){border-right:none}
+.month-cal-day:hover{background:var(--bg-secondary)}
+.month-cal-day.other-month{opacity:.32}
+.month-cal-day.selected{background:var(--primary-soft)}
+.month-cal-day.today .month-cal-daynum{background:var(--primary);color:#fff;border-radius:50%}
+.month-cal-daynum{font-size:.82rem;font-weight:700;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.month-cal-dots{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;max-width:100%;line-height:0}
+.month-cal-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.month-cal-dot.planifie{background:var(--primary)}
+.month-cal-dot.termine{background:var(--success)}
+.month-cal-dot.annule{background:var(--text-muted);opacity:.5}
+.month-cal-more{font-size:.58rem;font-weight:800;color:var(--text-muted);line-height:1}
+.month-day-detail{margin-top:16px}
+.month-day-detail-header{display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:800;margin-bottom:12px;text-transform:capitalize}
+.month-day-detail-header .badge-count{margin-left:auto;font-size:.72rem;font-weight:600;color:var(--text-muted);text-transform:none}
+@media(max-width:768px){
+    .month-cal-day{padding:3px 2px;min-height:40px}
+    .month-cal-daynum{font-size:.76rem;width:22px;height:22px}
+    .month-cal-dot{width:5px;height:5px}
+    .month-cal-weekday{font-size:.6rem;padding:6px 1px}
+}
+
+/* ================================================================
+   RECHERCHE CLIENTE (autocomplétion dans form RDV)
+   ================================================================ */
+.client-search-wrap{position:relative}
+.client-search-selected{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--primary-soft);border:1.5px solid var(--primary-muted);border-radius:var(--radius);cursor:default}
+.client-search-selected .csx-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;flex-shrink:0}
+.client-search-selected .csx-info{flex:1;min-width:0}
+.client-search-selected .csx-name{font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.client-search-selected .csx-sub{font-size:.74rem;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.client-search-clear{background:none;border:none;color:var(--text-muted);cursor:pointer;padding:6px;flex-shrink:0;border-radius:50%;display:flex}
+.client-search-clear:hover{background:var(--surface);color:var(--danger)}
+.client-search-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-3);max-height:280px;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:50;display:none}
+.client-search-dropdown.open{display:block}
+.client-search-group-label{padding:6px 12px 3px;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);background:var(--bg-secondary);position:sticky;top:0}
+.client-search-item{display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;transition:background var(--transition-fast)}
+.client-search-item:hover,.client-search-item.highlighted{background:var(--primary-soft)}
+.client-search-item .csi-avatar{width:32px;height:32px;border-radius:50%;background:var(--bg-secondary);color:var(--text-secondary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.76rem;flex-shrink:0}
+.client-search-item .csi-info{flex:1;min-width:0}
+.client-search-item .csi-name{font-weight:600;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.client-search-item .csi-sub{font-size:.72rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.client-search-empty{padding:12px;text-align:center;color:var(--text-muted);font-size:.8rem}
+.client-search-create{padding:10px 12px;border-top:1px solid var(--border-light);color:var(--primary);font-weight:700;font-size:.82rem;cursor:pointer;display:flex;align-items:center;gap:6px}
+.client-search-create:hover{background:var(--primary-soft)}
 /* Timeline */
 .timeline-wrap{display:flex;overflow-x:hidden;position:relative;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
 .timeline-hours{width:52px;flex-shrink:0;border-right:1px solid var(--border)}
@@ -515,6 +569,32 @@ a{text-decoration:none;color:inherit}
 .fiches-pagination-info{font-size:.78rem;color:var(--text-muted)}
 .fiches-load-more{display:flex;align-items:center;justify-content:center;padding:10px 20px;border:1.5px dashed var(--border);border-radius:var(--radius-lg);cursor:pointer;color:var(--text-secondary);font-size:.82rem;font-weight:600;gap:8px;transition:all var(--transition-fast);background:var(--surface-2)}
 .fiches-load-more:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-soft)}
+
+
+/* ================================================================
+   RDV → FICHE RAPIDE
+   ================================================================ */
+.rdv-fiche-rapide{background:var(--primary-soft);border:1.5px solid var(--primary-muted);border-radius:var(--radius-lg);padding:14px 16px;margin-top:14px}
+.rdv-fiche-rapide-toggle{display:flex;align-items:center;gap:8px;cursor:pointer}
+.rdv-fiche-rapide-toggle input[type="checkbox"]{accent-color:var(--primary);width:16px;height:16px;cursor:pointer}
+.rdv-fiche-rapide-toggle label{font-size:.85rem;font-weight:700;cursor:pointer;color:var(--primary-dark)}
+.rdv-fiche-rapide-body{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.rdv-fiche-rapide-body.hidden{display:none}
+
+/* ================================================================
+   CARTE — Fix scroll : route-summary sort du map-wrap
+   ================================================================ */
+#map-wrap{display:flex;flex-direction:column;gap:0}
+#map-container{height:300px;border-radius:var(--radius-lg);overflow:hidden}
+#route-summary-wrap{width:100%}
+@media(min-width:768px){#map-container{height:460px}}
+
+/* ================================================================
+   CARTE — Stop pause, adresse départ
+   ================================================================ */
+.route-stop.pause .route-stop-num{background:var(--border);color:var(--text-muted)}
+.route-depart-bar{padding:8px 14px;background:var(--surface-2);border-radius:var(--radius-sm);margin-bottom:8px;display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--text-secondary)}
+.route-depart-bar strong{color:var(--text);font-weight:700}
 
 /* ================================================================
    IMPRESSION PLANNING
@@ -836,6 +916,9 @@ a{text-decoration:none;color:inherit}
 .rdv-buffer-tag{font-size:0.60rem;padding:2px 6px;border-radius:var(--radius-full);background:var(--warning-soft);color:var(--warning);font-weight:700;margin-top:4px;white-space:nowrap;display:inline-flex;align-items:center;gap:2px;border:1px solid rgba(212,146,42,0.15)}
 .rdv-body{flex:1;min-width:0}
 .rdv-client-name{font-weight:700;font-size:0.88rem;margin-bottom:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.rdv-name{font-weight:700;font-size:0.88rem;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rdv-depart-retour{font-size:.7rem;color:var(--warning);margin-top:3px;display:flex;flex-wrap:wrap;gap:2px 10px}
+.rdv-status-badge{display:inline-block;margin-top:3px}
 .rdv-prestations{font-size:0.74rem;color:var(--text-secondary)}
 .rdv-address{font-size:0.70rem;color:var(--text-muted);display:flex;align-items:center;gap:3px;margin-top:3px}
 .rdv-actions{display:flex;gap:2px;flex-shrink:0;align-self:center}
@@ -927,58 +1010,212 @@ a{text-decoration:none;color:inherit}
    RESPONSIVE MOBILE (≤ 768px)
    ================================================================ */
 @media(max-width:768px){
+    /* ── Navigation ── */
     #sidebar{display:none !important}
     #mobile-nav{display:flex !important;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);z-index:100;padding:4px 0;padding-bottom:max(4px,env(safe-area-inset-bottom));justify-content:space-around}
     #main{padding-bottom:calc(var(--mobile-nav-h) + 4px)}
-    #view{padding:14px 12px}
-    #topbar{padding:0 14px;height:50px}
+    #view{padding:12px 10px}
+    #topbar{padding:0 12px;height:50px}
     #topbar h2{font-size:1.02rem}
     .topbar-actions .btn{font-size:0.78rem;padding:7px 10px;min-height:36px;border-radius:var(--radius-sm)}
-    .form-input,.form-select,.form-textarea{font-size:16px;padding:11px 13px}
-    .btn{padding:11px 16px;font-size:0.85rem;min-height:44px}
-    .btn-sm{padding:9px 12px;min-height:40px}
+
+    /* ── Touch targets : 44px min ── */
+    .btn{padding:11px 16px;font-size:0.88rem;min-height:44px}
+    .btn-sm{padding:9px 14px;min-height:40px;font-size:0.82rem}
     .btn-ghost{min-height:40px;padding:8px}
+    .mob-tab{min-height:52px}
+
+    /* ── Inputs : 16px évite le zoom iOS ── */
+    .form-input,.form-select,.form-textarea{font-size:16px;padding:12px 14px;border-radius:var(--radius)}
     .form-row,.form-row-3{grid-template-columns:1fr}
+    .form-label{font-size:.82rem}
+
+    /* ── Modales : bottom sheet ── */
     .modal-overlay{align-items:flex-end;padding:0}
-    .modal{max-width:100%;border-radius:var(--radius-xl) var(--radius-xl) 0 0;max-height:93vh;display:flex;flex-direction:column}
-    .modal-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
-    .modal-header{padding:16px 16px 0;flex-shrink:0}
-    .modal-footer{padding:10px 16px;padding-bottom:max(10px,env(safe-area-inset-bottom));flex-shrink:0;border-top:1px solid var(--border-light)}
-    .kpi-grid{grid-template-columns:1fr 1fr;gap:9px}
-    .kpi-card{padding:14px 13px}
-    .kpi-value{font-size:1.25rem}
+    .modal{max-width:100%;border-radius:var(--radius-xl) var(--radius-xl) 0 0;max-height:95vh;display:flex;flex-direction:column}
+    .modal-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 14px}
+    .modal-header{padding:14px 14px 0;flex-shrink:0}
+    .modal-footer{padding:10px 14px;padding-bottom:max(14px,env(safe-area-inset-bottom));flex-shrink:0;border-top:1px solid var(--border-light);display:flex;gap:8px}
+    .modal-footer .btn{flex:1}
+
+    /* ═══════════════════════════════════════════════
+       CARTE RDV — REFONTE COMPLÈTE MOBILE
+       La carte est maintenant en colonne unique :
+       heure en haut à gauche, infos en dessous
+    ═══════════════════════════════════════════════ */
+    .rdv-card{
+        display:grid;
+        grid-template-columns:auto 1fr auto;
+        grid-template-rows:auto auto;
+        gap:0 10px;
+        padding:12px 12px;
+        align-items:start;
+    }
+    .rdv-time-block{
+        grid-column:1;
+        grid-row:1 / 3;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        min-width:52px;
+        border-right:2px solid var(--primary-muted);
+        padding-right:10px;
+        padding-top:2px;
+        gap:2px;
+    }
+    .rdv-time{font-size:1.05rem;font-weight:900;line-height:1.1}
+    .rdv-time-end{font-size:0.72rem;color:var(--text-muted);white-space:nowrap}
+    .rdv-buffer-tag{font-size:0.6rem;padding:2px 5px;white-space:nowrap}
+    .rdv-body{
+        grid-column:2;
+        grid-row:1;
+        min-width:0;
+        overflow:hidden;
+    }
+    .rdv-body .rdv-name{
+        font-size:.92rem;
+        font-weight:700;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        line-height:1.3;
+    }
+    .rdv-prestations{
+        font-size:0.76rem;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        color:var(--text-secondary);
+        margin-top:2px;
+    }
+    .rdv-address{
+        font-size:0.7rem;
+        color:var(--text-muted);
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        margin-top:2px;
+    }
+    .rdv-depart-retour{
+        grid-column:2;
+        grid-row:2;
+        font-size:0.7rem;
+        margin-top:4px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:4px 10px;
+    }
+    .rdv-actions{
+        grid-column:3;
+        grid-row:1 / 3;
+        display:flex;
+        flex-direction:column;
+        gap:4px;
+        align-self:center;
+    }
+    .rdv-actions .btn-ghost{min-height:36px;padding:6px;width:36px;display:flex;align-items:center;justify-content:center}
+    .rdv-status-badge{margin-top:3px;font-size:0.66rem;padding:2px 7px}
+
+    /* ── KPI dashboard ── */
+    .kpi-grid{grid-template-columns:1fr 1fr;gap:8px}
+    .kpi-card{padding:12px 11px}
+    .kpi-value{font-size:1.2rem}
+    .kpi-icon{display:none}
+    .client-kpi-row{grid-template-columns:1fr 1fr;gap:8px}
+    .client-kpi-value{font-size:1.1rem}
+
+    /* ── Clientes ── */
     .clients-grid{grid-template-columns:1fr;gap:8px}
-    .search-bar{flex-direction:column}
+    .search-bar{flex-direction:column;gap:8px}
     .search-input{font-size:16px}
     .filter-select{min-width:100%;font-size:16px}
-    .detail-header{flex-direction:column;gap:12px}
-    .detail-actions{width:100%}
-    .stats-row{grid-template-columns:1fr 1fr}
-    .fiche-details-grid{grid-template-columns:1fr 1fr}
+    .detail-header{flex-direction:column;gap:10px}
+    .detail-actions{width:100%;display:flex;flex-wrap:wrap;gap:6px}
+    .detail-actions .btn{flex:1;min-width:calc(50% - 3px)}
+    .client-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;padding-bottom:2px}
+    .client-tab{padding:9px 14px;font-size:.8rem}
+
+    /* ── Fiches techniques ── */
+    .fiche-card{padding:12px}
     .fiche-header{flex-direction:column;gap:6px}
-    .formule-row{grid-template-columns:1fr}
+    .fiche-header > div:last-child{display:flex;justify-content:flex-end;gap:6px}
+    .fiche-details-grid{grid-template-columns:1fr 1fr;gap:4px}
+    .fiche-detail-item{font-size:.78rem}
+    .formule-row{grid-template-columns:1fr;gap:4px}
+    .formule-row>*{font-size:.78rem}
+    .formule-zone-badge{display:inline-block;margin-bottom:4px}
     .formule-entry .form-row{grid-template-columns:1fr !important}
+    .fiche-step-header{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+    .fiche-step{min-width:70px;padding:8px 6px;font-size:.7rem}
+    .fiche-step-icon{display:none}
+
+    /* ── Statistiques ── */
+    .stats-row,.stats-grid{grid-template-columns:1fr 1fr}
+    .stat-insight{padding:12px}
+    .stat-insight-val{font-size:1.4rem}
+
+    /* ── Agenda ── */
+    .week-nav,.month-nav{gap:4px}
+    .week-nav-label,.month-nav-label{font-size:.82rem;min-width:auto;text-align:center}
+    .agenda-day h3{font-size:.82rem}
     .checkbox-grid{grid-template-columns:1fr 1fr}
-    .week-nav,.month-nav{gap:6px}
-    .week-nav-label,.month-nav-label{font-size:0.85rem;min-width:auto}
-    .rdv-card{gap:10px;padding:12px}
-    .rdv-time-block{flex-direction:row;gap:8px;min-width:auto;align-items:center}
-    .rdv-actions{align-self:flex-end}
+
+    /* ── Carte (map) ── */
+    #map-container{height:260px;min-height:260px;border-radius:var(--radius)}
+    #map-toolbar{gap:6px;flex-direction:column;align-items:stretch}
+    #map-toolbar .map-legend{font-size:.68rem;gap:8px}
+    #map-toolbar .filter-select{width:100%}
+    .route-summary-header{flex-direction:column;gap:8px;align-items:flex-start}
+    .route-kpis{gap:8px;flex-wrap:wrap}
+    .route-kpi-val{font-size:1.2rem}
+    .route-stop{padding:10px 0;gap:8px}
+    .route-stop-num{width:24px;height:24px;font-size:.68rem}
+    .route-stop-name{font-size:.82rem}
+    .route-stop-addr{font-size:.68rem}
+    .map-popup-actions a{font-size:.7rem;padding:5px 8px}
+
+    /* ── Focus RDV ── */
+    .focus-timer-display{font-size:2.8rem}
+    .focus-body{padding:12px}
+    .focus-footer{padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+    .focus-preset-btn{padding:6px 10px;font-size:.74rem}
+
+    /* ── Frais ── */
     .ik-settings-panel{flex-direction:column}
     .ik-settings-panel .form-input,.ik-settings-panel .form-select{max-width:100% !important}
     .frais-totals-row{grid-template-columns:1fr 1fr}
     .frais-table{border:none;background:transparent}
     .frais-table thead{display:none}
     .frais-table tbody{display:flex;flex-direction:column;gap:8px}
-    .frais-table tbody tr{display:flex;flex-wrap:wrap;gap:6px 10px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);align-items:center}
-    .frais-table tbody td{border:none;padding:0;font-size:0.82rem}
+    .frais-table tbody tr{display:flex;flex-wrap:wrap;gap:6px 10px;padding:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);align-items:center}
+    .frais-table tbody td{border:none;padding:0;font-size:.82rem}
     .frais-table tbody td:nth-child(3){flex-basis:100%;order:10}
     .frais-table tbody td:nth-child(5){margin-left:auto}
     .frais-table tbody td:last-child{order:20;flex-basis:100%;text-align:right}
-    #view>div[style*="grid-template-columns"]{display:flex !important;flex-direction:column !important;gap:20px !important}
-    .confirm-box{margin:0 16px}
-    .empty-state{padding:28px 14px}
+
+    /* ── Bilan ── */
+    .projection-card{flex-direction:column;gap:8px}
+    .proj-val{font-size:1.4rem}
+
+    /* ── Prestations ── */
+    .presta-settings-item{padding:8px 10px}
+    .presta-settings-list{max-height:200px}
+
+    /* ── Divers ── */
+    #view>div[style*="grid-template-columns"]{display:flex !important;flex-direction:column !important;gap:16px !important}
+    .confirm-box{margin:0 10px}
+    .empty-state{padding:24px 12px}
     .backup-banner{flex-direction:column;text-align:center}
+    .section-title{font-size:.78rem}
+    .today-planning{border-radius:var(--radius-lg)}
+    .today-stop{padding:11px 12px;gap:10px}
+    .today-name{font-size:.9rem}
+    .today-presta{font-size:.72rem}
+    .today-time{font-size:.88rem;min-width:42px}
+    .onboarding-overlay{padding:16px}
+    .onboarding-step{padding:11px 12px}
+    .route-depart-bar{flex-wrap:wrap;gap:6px}
+    .route-depart-bar .btn{width:100%;margin-left:0 !important}
 }
 /* ================================================================
    MAP (Leaflet)
@@ -1251,7 +1488,9 @@ const ICON_PATHS = {
     'wifi-off':'<line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>',
     printer:'<polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',
     navigation:'<polygon points="3 11 22 2 13 21 11 13 3 11"/>',
-    grip:'<circle cx="9" cy="6" r="1" fill="currentColor"/><circle cx="15" cy="6" r="1" fill="currentColor"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/><circle cx="9" cy="18" r="1" fill="currentColor"/><circle cx="15" cy="18" r="1" fill="currentColor"/>'
+    grip:'<circle cx="9" cy="6" r="1" fill="currentColor"/><circle cx="15" cy="6" r="1" fill="currentColor"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/><circle cx="9" cy="18" r="1" fill="currentColor"/><circle cx="15" cy="18" r="1" fill="currentColor"/>',
+    coffee:'<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>',
+    home:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>'
 };
 
 /** Génère un SVG inline à partir du nom de l'icône */
@@ -1323,6 +1562,7 @@ const CONFIG = {
     LS_KEY_PRESTATIONS: 'monsalon_prestations',
     LS_KEY_PRESTATIONS_DUREES: 'monsalon_prestations_durees',
     LS_KEY_ONBOARDING: 'monsalon_onboarding_done',
+    LS_KEY_ADRESSE_DEPART: 'monsalon_adresse_depart',
     FICHES_PER_PAGE: 10,
     // Durées par défaut en minutes pour l'auto-calcul du champ Fin dans le form RDV
     PRESTATIONS_DUREES_DEFAULT: {
@@ -1853,7 +2093,7 @@ class App {
     /* --- Modale --- */
     bindModal(){document.getElementById('modal-close').addEventListener('click',()=>this.closeModal());document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)this.closeModal()})}
     openModal(title,body,footer){document.getElementById('modal-title').innerHTML=title;document.getElementById('modal-body').innerHTML=body;document.getElementById('modal-footer').innerHTML=footer;document.getElementById('modal-overlay').classList.add('open')}
-    closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
+    closeModal(){document.getElementById('modal-overlay').classList.remove('open');if(this._clientSearchOutside){document.removeEventListener('click',this._clientSearchOutside);this._clientSearchOutside=null}}
 
     /* --- Confirmation --- */
     bindConfirm(){document.getElementById('confirm-cancel').addEventListener('click',()=>{document.getElementById('confirm-overlay').classList.remove('open');this.confirmCallback=null});document.getElementById('confirm-ok').addEventListener('click',()=>{document.getElementById('confirm-overlay').classList.remove('open');if(this.confirmCallback)this.confirmCallback();this.confirmCallback=null})}
@@ -1870,7 +2110,7 @@ class App {
         document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();this.openSearch()}if(e.key==='Escape'){if(overlay.classList.contains('open'))this.closeSearch();const fo=document.getElementById('focus-overlay');if(fo&&fo.classList.contains('open'))this.closeFocusMode()}});
         let debT=null;
         input.addEventListener('input',()=>{clearTimeout(debT);debT=setTimeout(()=>this.performSearch(input.value.trim()),200)});
-        results.addEventListener('click',e=>{const item=e.target.closest('.search-result');if(item){const v=item.dataset.view;const p=item.dataset.params?JSON.parse(item.dataset.params):{};this.closeSearch();this.navigate(v,p)}});
+        results.addEventListener('click',e=>{const item=e.target.closest('.search-result');if(item){const v=item.dataset.view;let p={};try{p=item.dataset.params?JSON.parse(item.dataset.params):{}}catch(err){p={}}this.closeSearch();this.navigate(v,p)}});
         // Historique des recherches (clic sur résultats de l'historique)
         results.addEventListener('click',e=>{const h=e.target.closest('[data-history]');if(h){input.value=h.dataset.history;input.dispatchEvent(new Event('input'))}});
     }
@@ -1923,7 +2163,7 @@ class App {
         const facRes=factures.filter(f=>{const cl=cMap[f.clientId];const name=cl?(cl.prenom+' '+cl.nom):'';return (name+' '+(f.numero||'')+' '+(f.notes||'')+' '+(f.lignes||[]).map(l=>l.designation).join(' ')).toLowerCase().includes(ql)}).sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,3);
         if(facRes.length>0){
             html+='<div class="search-cat">Factures</div>';
-            facRes.forEach(f=>{const cl=cMap[f.clientId];const nom=cl?cl.prenom+' '+cl.nom:'?';html+='<div class="search-result" tabindex="0" role="button" aria-label="Facture '+esc(f.numero)+'" data-view="factures" data-params=\'{}\'><div class="search-result-icon" style="background:var(--warning-soft);color:var(--warning)">'+icon('receipt',16)+'</div><div class="search-result-body"><div class="search-result-title">'+esc(f.numero||'—')+' — '+esc(nom)+'</div><div class="search-result-sub">'+formatEuros(f.total)+' · '+formatDateShort(f.date)+'</div></div><span class="search-recency">'+{payee:'✓ Payée',attente:'⏳ Attente',annulee:'✗'}[f.statut]+'</span></div>'});
+            facRes.forEach(f=>{const cl=cMap[f.clientId];const nom=cl?cl.prenom+' '+cl.nom:'?';html+='<div class="search-result" tabindex="0" role="button" aria-label="Facture '+esc(f.numero)+'" data-view="factures" data-params=\'{}\'><div class="search-result-icon" style="background:var(--warning-soft);color:var(--warning)">'+icon('receipt',16)+'</div><div class="search-result-body"><div class="search-result-title">'+esc(f.numero||'—')+' — '+esc(nom)+'</div><div class="search-result-sub">'+formatEuros(f.total)+' · '+formatDateShort(f.date)+'</div></div><span class="search-recency">'+{payee:'✓ Payée',attente:'En attente',annulee:'✗'}[f.statut]+'</span></div>'});
         }
         if(!html)html='<div class="search-empty">'+icon('search',24)+'<br>Aucun résultat pour « '+esc(q)+' »</div>';
         res.innerHTML=html;
@@ -2185,7 +2425,7 @@ class App {
         if(lastFiche&&(lastFiche.formules||[]).length>0){
             const fms=lastFiche.formules;
             bodyHTML+='<div class="focus-section"><div class="focus-section-title">'+icon('palette',16)+' Dernière formule ('+formatDate(lastFiche.date)+')</div>'
-                +fms.map(fm=>'<div class="focus-formule"><span class="focus-formule-zone">'+esc(fm.zone||'—')+'</span> '+esc(fm.marque||'')+' '+esc(fm.teinte||'')+(fm.quantite?' · '+fm.quantite+'g':'')+(fm.oxydant?' + Ox '+esc(fm.oxydant)+(fm.qteOxydant?' '+fm.qteOxydant+'g':''):'')+(fm.tempsPose?' · ⏱ '+fm.tempsPose+' min':'')+(fm.notes?'<div style="color:var(--text-muted);font-size:.74rem;margin-top:3px">'+esc(fm.notes)+'</div>':'')+'</div>').join('')
+                +fms.map(fm=>'<div class="focus-formule"><span class="focus-formule-zone">'+esc(fm.zone||'—')+'</span> '+esc(fm.marque||'')+' '+esc(fm.teinte||'')+(fm.quantite?' · '+fm.quantite+'g':'')+(fm.oxydant?' + Ox '+esc(fm.oxydant)+(fm.qteOxydant?' '+fm.qteOxydant+'g':''):'')+(fm.tempsPose?' · Pose '+fm.tempsPose+' min':'')+(fm.notes?'<div style="color:var(--text-muted);font-size:.74rem;margin-top:3px">'+esc(fm.notes)+'</div>':'')+'</div>').join('')
                 +'</div>';
         }
         // Notes RDV
@@ -2256,6 +2496,59 @@ class App {
     }
 
     closeFocusMode(){if(this._focusCleanup)this._focusCleanup()}
+
+    /* ================================================================
+       CARTE — Configuration adresse de départ
+       ================================================================ */
+    openDepartConfig(){
+        const current=(() => {try{const raw=localStorage.getItem(CONFIG.LS_KEY_ADRESSE_DEPART);return raw?JSON.parse(raw):null}catch(e){return null}})();
+        const body='<p style="font-size:.82rem;color:var(--text-secondary);margin-bottom:12px">Votre adresse de départ apparaît au début de chaque itinéraire journalier.</p>'
+            +'<div class="form-group"><label class="form-label">Libellé (ex: Domicile, Cabinet…)</label><input type="text" class="form-input" id="dep-label" value="'+esc(current?.label||'Domicile')+'"></div>'
+            +'<div class="form-group"><label class="form-label">Adresse</label><input type="text" class="form-input" id="dep-addr" value="'+esc(current?.adresse||'')+'" placeholder="3 rue de la Paix, 34000 Montpellier"></div>'
+            +'<p id="dep-geocode-status" style="font-size:.74rem;color:var(--text-muted);margin-top:4px"></p>';
+        this.openModal(icon('home',20)+' Adresse de départ',body,
+            '<button class="btn btn-secondary" onclick="app.closeModal()">Annuler</button>'
+            +'<button class="btn btn-primary" id="btn-save-depart">'+icon('check',14)+' Enregistrer</button>');
+        document.getElementById('btn-save-depart')?.addEventListener('click',async()=>{
+            const label=document.getElementById('dep-label').value.trim()||'Domicile';
+            const adresse=document.getElementById('dep-addr').value.trim();
+            const status=document.getElementById('dep-geocode-status');
+            if(!adresse){toast('Adresse requise','danger');return}
+            if(status)status.textContent='Géocodage en cours…';
+            const coords=await this.geocodeAddress(adresse);
+            if(!coords){if(status)status.textContent='Adresse introuvable. Vérifiez et réessayez.';return}
+            localStorage.setItem(CONFIG.LS_KEY_ADRESSE_DEPART,JSON.stringify({label,adresse,lat:coords.lat,lng:coords.lng}));
+            this.closeModal();
+            toast('Adresse de départ enregistrée');
+            // Rafraîchir la carte si on est dessus
+            if(this.currentView==='carte')this.navigate('carte');
+        });
+    }
+
+    /* ================================================================
+       CARTE — Ajouter une pause après un RDV dans l'itinéraire
+       ================================================================ */
+    async addPauseAfterStop(rdvId,dayFilter){
+        const body='<div class="form-group"><label class="form-label">Libellé de la pause</label><input type="text" class="form-input" id="pause-label" value="Pause déjeuner" placeholder="Domicile, Pause, Courses…"></div>'
+            +'<div class="form-group"><label class="form-label">Durée estimée (min)</label><input type="number" class="form-input" id="pause-duree" value="60" min="5" step="5"></div>';
+        this.openModal(icon('coffee',20)+' Ajouter une pause',body,
+            '<button class="btn btn-secondary" onclick="app.closeModal()">Annuler</button>'
+            +'<button class="btn btn-primary" id="btn-save-pause">Ajouter</button>');
+        document.getElementById('btn-save-pause')?.addEventListener('click',async()=>{
+            const label=document.getElementById('pause-label').value.trim()||'Pause';
+            const duree=parseInt(document.getElementById('pause-duree').value)||60;
+            // Stocker la pause dans le RDV lui-même (champ _pauseApres)
+            const rdv=await this.db.get(CONFIG.STORES.RDV,rdvId);
+            if(rdv){
+                rdv._pauseAvantProchain={label,duree};
+                await this.db.put(CONFIG.STORES.RDV,rdv);
+            }
+            this.closeModal();
+            toast('Pause ajoutée');
+            // Re-charger la carte
+            if(this.currentView==='carte')this.navigate('carte');
+        });
+    }
 
     async _cleanFocusTimerKeys(){
         // Supprimer les clés de timer pour les RDV qui n'existent plus ou sont terminés
@@ -2688,14 +2981,45 @@ ${f.notes?'<p style="font-size:.82rem;color:#5F5C6E;margin-bottom:20px"><em>'+es
        ================================================================ */
     openSalonInfo(){
         const s=this.getSalonInfo();
+        const dep=(() => {try{const raw=localStorage.getItem(CONFIG.LS_KEY_ADRESSE_DEPART);return raw?JSON.parse(raw):null}catch(e){return null}})();
         const body='<div class="form-row"><div class="form-group"><label class="form-label">Prénom</label><input class="form-input" id="si-prenom" value="'+esc(s.prenom||'')+'"></div><div class="form-group"><label class="form-label">Nom / Raison sociale</label><input class="form-input" id="si-nom" value="'+esc(s.nom||'')+'"></div></div>'
-            +'<div class="form-group"><label class="form-label">Adresse</label><input class="form-input" id="si-adresse" value="'+esc(s.adresse||'')+'"></div>'
+            +'<div class="form-group"><label class="form-label">Adresse professionnelle</label><input class="form-input" id="si-adresse" value="'+esc(s.adresse||'')+'"></div>'
             +'<div class="form-row"><div class="form-group"><label class="form-label">Téléphone</label><input class="form-input" id="si-tel" value="'+esc(s.telephone||'')+'"></div><div class="form-group"><label class="form-label">Email</label><input class="form-input" id="si-email" value="'+esc(s.email||'')+'"></div></div>'
-            +'<div class="form-group"><label class="form-label">SIRET (optionnel)</label><input class="form-input" id="si-siret" value="'+esc(s.siret||'')+'"></div>';
+            +'<div class="form-group"><label class="form-label">SIRET (optionnel)</label><input class="form-input" id="si-siret" value="'+esc(s.siret||'')+'"></div>'
+            +'<div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">'
+            +'<div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);font-weight:800;margin-bottom:8px">'+icon('map-pin',13)+' Adresse de départ (pour la carte)</div>'
+            +'<p style="font-size:.76rem;color:var(--text-secondary);margin-bottom:8px">Point de départ affiché au début de chaque itinéraire journalier. Sauvegardé définitivement.</p>'
+            +'<div class="form-group"><label class="form-label">Libellé</label><input class="form-input" id="si-dep-label" value="'+esc(dep?.label||'Domicile')+'" placeholder="Domicile, Bureau…"></div>'
+            +'<div class="form-group"><label class="form-label">Adresse de départ</label><input class="form-input" id="si-dep-adresse" value="'+esc(dep?.adresse||s.adresse||'')+'" placeholder="3 rue de la Paix, 34000 Montpellier"></div>'
+            +(dep?.lat?'<p style="font-size:.72rem;color:var(--success);margin-top:4px">'+icon('check',12)+' Adresse géocodée — affichée sur la carte</p>':'<p style="font-size:.72rem;color:var(--text-muted);margin-top:4px">Sera géocodée automatiquement à l\'enregistrement.</p>')
+            +'</div>';
         this.openModal(icon('edit',20)+' Mon profil professionnel',body,'<button class="btn btn-secondary" onclick="app.closeModal()">Annuler</button><button class="btn btn-primary" id="btn-save-salon">Enregistrer</button>');
-        document.getElementById('btn-save-salon').addEventListener('click',()=>{
+        document.getElementById('btn-save-salon').addEventListener('click',async()=>{
             const info={nom:document.getElementById('si-nom').value.trim(),prenom:document.getElementById('si-prenom').value.trim(),adresse:document.getElementById('si-adresse').value.trim(),telephone:document.getElementById('si-tel').value.trim(),email:document.getElementById('si-email').value.trim(),siret:document.getElementById('si-siret').value.trim()};
-            localStorage.setItem(CONFIG.LS_KEY_SALON_INFO,JSON.stringify(info));this.closeModal();toast('Profil enregistré');
+            localStorage.setItem(CONFIG.LS_KEY_SALON_INFO,JSON.stringify(info));
+            // Sauvegarder et géocoder l'adresse de départ
+            const depLabel=document.getElementById('si-dep-label').value.trim()||'Domicile';
+            const depAdresse=document.getElementById('si-dep-adresse').value.trim();
+            if(depAdresse){
+                // Garder les coords existantes si l'adresse n'a pas changé
+                if(dep?.adresse===depAdresse&&dep?.lat){
+                    localStorage.setItem(CONFIG.LS_KEY_ADRESSE_DEPART,JSON.stringify({label:depLabel,adresse:depAdresse,lat:dep.lat,lng:dep.lng}));
+                }else{
+                    // Géocoder en arrière-plan (ne bloque pas le save)
+                    localStorage.setItem(CONFIG.LS_KEY_ADRESSE_DEPART,JSON.stringify({label:depLabel,adresse:depAdresse}));
+                    this.geocodeAddress(depAdresse).then(coords=>{
+                        if(coords){
+                            localStorage.setItem(CONFIG.LS_KEY_ADRESSE_DEPART,JSON.stringify({label:depLabel,adresse:depAdresse,lat:coords.lat,lng:coords.lng}));
+                            toast('Adresse de départ géocodée');
+                        }else{
+                            toast('Adresse de départ introuvable — vérifiez-la','danger');
+                        }
+                    }).catch(()=>{});
+                }
+            }else{
+                localStorage.removeItem(CONFIG.LS_KEY_ADRESSE_DEPART);
+            }
+            this.closeModal();toast('Profil enregistré');
         });
     }
 
@@ -2731,7 +3055,7 @@ ${f.notes?'<p style="font-size:.82rem;color:#5F5C6E;margin-bottom:20px"><em>'+es
             // Pagination
             const pg=document.getElementById('pagination');
             if(totalPages<=1){pg.innerHTML='';return}
-            let pgHTML='<button class="pagination-btn" onclick="app._clPage('+(currentPage-1)+',renderG)" '+(currentPage===0?'disabled':'')+'>'+icon('chevron-left',14)+'</button>';
+            let pgHTML='<button class="pagination-btn" onclick="app._clPage('+(currentPage-1)+')" '+(currentPage===0?'disabled':'')+'>'+icon('chevron-left',14)+'</button>';
             for(let i=0;i<totalPages;i++){if(i===0||i===totalPages-1||Math.abs(i-currentPage)<=1){pgHTML+='<button class="pagination-btn'+(i===currentPage?' active':'')+'" onclick="app._clPage('+i+')">'+( i+1)+'</button>'}else if(Math.abs(i-currentPage)===2){pgHTML+='<span class="pagination-info">…</span>'}}
             pgHTML+='<button class="pagination-btn" onclick="app._clPage('+(currentPage+1)+')" '+(currentPage===totalPages-1?'disabled':'')+'>'+icon('chevron-right',14)+'</button>';
             pg.innerHTML=pgHTML;
@@ -3074,23 +3398,95 @@ ${f.notes?'<p style="font-size:.82rem;color:#5F5C6E;margin-bottom:20px"><em>'+es
     /* ================================================================
        AGENDA — Vue liste + Vue timeline
        ================================================================ */
-    async renderAgenda(weekOffset,viewMode){
+    async renderAgenda(weekOffset,viewMode,selectedDay){
         this.currentWeekOffset=weekOffset;
-        viewMode=viewMode||localStorage.getItem('agenda_view')||'liste';
+        viewMode=viewMode||localStorage.getItem('agenda_view')||'mois';
         localStorage.setItem('agenda_view',viewMode);
-        const days=this.getWeekDates(weekOffset);
-        const wl='Semaine du '+days[0].getDate()+' '+days[0].toLocaleDateString('fr-FR',{month:'long'})+' au '+days[6].getDate()+' '+days[6].toLocaleDateString('fr-FR',{month:'long',year:'numeric'});
         document.getElementById('page-title').textContent='Agenda';
         document.getElementById('topbar-actions').innerHTML='<button class="btn btn-primary" onclick="app.openRdvForm()">'+icon('plus',16)+' Nouveau RDV</button>';
         const allRdv=await this.db.getAll(CONFIG.STORES.RDV);const clients=await this.db.getAll(CONFIG.STORES.CLIENTS);const cMap={};clients.forEach(c=>{cMap[c.id]=c});
         const todayStr=ymd(new Date());
         const view=document.getElementById('view');
-        const navHTML='<div class="agenda-nav"><button class="btn btn-secondary btn-sm" onclick="app.renderAgenda('+(weekOffset-1)+',\''+viewMode+'\')">'+icon('chevron-left',16)+'</button><div class="agenda-nav-center"><span class="agenda-week-label">'+wl+'</span>'+(weekOffset!==0?'<button class="btn btn-ghost btn-sm" onclick="app.renderAgenda(0,\''+viewMode+'\')">Aujourd\'hui</button>':'')+'</div><div class="agenda-view-toggle"><button class="agenda-view-btn'+(viewMode==='liste'?' active':'')+'" onclick="app.renderAgenda('+weekOffset+',\'liste\')">'+icon('file-text',14)+' Liste</button><button class="agenda-view-btn'+(viewMode==='timeline'?' active':'')+'" onclick="app.renderAgenda('+weekOffset+',\'timeline\')">'+icon('calendar',14)+' Timeline</button></div><button class="btn btn-secondary btn-sm" onclick="app.renderAgenda('+(weekOffset+1)+',\''+viewMode+'\')">'+icon('chevron-right',16)+'</button></div>';
+
+        // Vue MOIS (type SimpleCal)
+        if(viewMode==='mois'){
+            await this._renderMoisAgenda(view,weekOffset,allRdv,cMap,todayStr,selectedDay);
+            return;
+        }
+
+        const days=this.getWeekDates(weekOffset);
+        const wl='Semaine du '+days[0].getDate()+' '+days[0].toLocaleDateString('fr-FR',{month:'long'})+' au '+days[6].getDate()+' '+days[6].toLocaleDateString('fr-FR',{month:'long',year:'numeric'});
+        const navHTML='<div class="agenda-nav"><button class="btn btn-secondary btn-sm" onclick="app.renderAgenda('+(weekOffset-1)+',\''+viewMode+'\')">'+icon('chevron-left',16)+'</button><div class="agenda-nav-center"><span class="agenda-week-label">'+wl+'</span>'+(weekOffset!==0?'<button class="btn btn-ghost btn-sm" onclick="app.renderAgenda(0,\''+viewMode+'\')">Aujourd\'hui</button>':'')+'</div>'+this._agendaViewToggle(weekOffset,viewMode)+'<button class="btn btn-secondary btn-sm" onclick="app.renderAgenda('+(weekOffset+1)+',\''+viewMode+'\')">'+icon('chevron-right',16)+'</button></div>';
         if(viewMode==='timeline'){
             await this._renderTimeline(view,navHTML,days,allRdv,cMap,todayStr);
         }else{
             this._renderListeAgenda(view,navHTML,days,allRdv,cMap,todayStr);
         }
+    }
+
+    _agendaViewToggle(weekOffset,viewMode){
+        return '<div class="agenda-view-toggle">'
+            +'<button class="agenda-view-btn'+(viewMode==='mois'?' active':'')+'" onclick="app.renderAgenda('+weekOffset+',\'mois\')">'+icon('calendar',14)+' Mois</button>'
+            +'<button class="agenda-view-btn'+(viewMode==='liste'?' active':'')+'" onclick="app.renderAgenda('+weekOffset+',\'liste\')">'+icon('file-text',14)+' Liste</button>'
+            +'<button class="agenda-view-btn'+(viewMode==='timeline'?' active':'')+'" onclick="app.renderAgenda('+weekOffset+',\'timeline\')">'+icon('clock',14)+' Jour</button>'
+            +'</div>';
+    }
+
+    async _renderMoisAgenda(view,monthOffset,allRdv,cMap,todayStr,selectedDay){
+        this._lastSelectedDay=selectedDay||null;
+        // monthOffset réutilise le paramètre weekOffset comme décalage de mois
+        const now=new Date();
+        const base=new Date(now.getFullYear(),now.getMonth()+monthOffset,1);
+        const year=base.getFullYear();const month=base.getMonth();
+        const monthLabel=base.toLocaleDateString('fr-FR',{month:'long',year:'numeric'});
+        // Premier jour de la grille : lundi de la semaine contenant le 1er
+        const firstDay=new Date(year,month,1);
+        let startOffset=firstDay.getDay()-1;if(startOffset<0)startOffset=6;// lundi=0
+        const gridStart=new Date(year,month,1-startOffset);
+        // Compter les RDV par jour
+        const rdvByDay={};
+        allRdv.forEach(r=>{if(!rdvByDay[r.date])rdvByDay[r.date]=[];rdvByDay[r.date].push(r)});
+        // Construire 6 semaines (42 jours)
+        let gridHTML='';
+        for(let i=0;i<42;i++){
+            const d=new Date(gridStart);d.setDate(gridStart.getDate()+i);
+            const ds=ymd(d);const inMonth=d.getMonth()===month;const isToday=ds===todayStr;const isSel=ds===selectedDay;
+            const dayRdvs=(rdvByDay[ds]||[]).sort((a,b)=>(a.heureDebut||'').localeCompare(b.heureDebut||''));
+            // Pastilles : max 4 affichées, sinon +N
+            let dotsHTML='';
+            const maxDots=4;
+            dayRdvs.slice(0,maxDots).forEach(r=>{dotsHTML+='<span class="month-cal-dot '+(r.statut||'planifie')+'"></span>'});
+            if(dayRdvs.length>maxDots)dotsHTML+='<span class="month-cal-more">+'+(dayRdvs.length-maxDots)+'</span>';
+            gridHTML+='<div class="month-cal-day'+(inMonth?'':' other-month')+(isToday?' today':'')+(isSel?' selected':'')+'" onclick="app.renderAgenda('+monthOffset+',\'mois\',\''+ds+'\')">'
+                +'<span class="month-cal-daynum">'+d.getDate()+'</span>'
+                +(dotsHTML?'<span class="month-cal-dots">'+dotsHTML+'</span>':'')
+                +'</div>';
+        }
+        const weekdays=['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+        const navHTML='<div class="agenda-nav"><button class="btn btn-secondary btn-sm" onclick="app.renderAgenda('+(monthOffset-1)+',\'mois\')">'+icon('chevron-left',16)+'</button><div class="agenda-nav-center"><span class="agenda-week-label" style="text-transform:capitalize">'+monthLabel+'</span>'+(monthOffset!==0?'<button class="btn btn-ghost btn-sm" onclick="app.renderAgenda(0,\'mois\')">Aujourd\'hui</button>':'')+'</div>'+this._agendaViewToggle(monthOffset,'mois')+'<button class="btn btn-secondary btn-sm" onclick="app.renderAgenda('+(monthOffset+1)+',\'mois\')">'+icon('chevron-right',16)+'</button></div>';
+        const calHTML='<div class="month-cal"><div class="month-cal-weekdays">'+weekdays.map(w=>'<div class="month-cal-weekday">'+w+'</div>').join('')+'</div><div class="month-cal-grid">'+gridHTML+'</div></div>';
+        // Détail du jour sélectionné
+        let detailHTML='';
+        if(selectedDay){
+            const selDate=new Date(selectedDay+'T12:00:00');
+            const dayRdvs=(rdvByDay[selectedDay]||[]).sort((a,b)=>(a.heureDebut||'').localeCompare(b.heureDebut||''));
+            const dayLabel=selDate.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
+            detailHTML='<div class="month-day-detail"><div class="month-day-detail-header">'+icon('calendar',18)+' '+dayLabel+'<span class="badge-count">'+dayRdvs.length+' RDV</span></div>';
+            if(dayRdvs.length===0){
+                detailHTML+='<div class="empty-state" style="padding:24px 14px"><p>Aucun rendez-vous ce jour</p><button class="btn btn-primary btn-sm" onclick="app.openRdvForm(null,null,\''+selectedDay+'\')">'+icon('plus',14)+' Ajouter un RDV</button></div>';
+            }else{
+                dayRdvs.forEach(rdv=>{
+                    const cl=cMap[rdv.clientId];const nom=cl?cl.prenom+' '+cl.nom:'Inconnue';const ville=cl&&cl.adresse?cl.adresse.ville:'';
+                    const bA=rdv.bufferAvant||0;const bAp=rdv.bufferApres||0;const dep=bA>0?this.subMinutes(rdv.heureDebut,bA):'';const ret=bAp>0?this.addMinutes(rdv.heureFin||rdv.heureDebut,bAp):'';
+                    detailHTML+='<div class="rdv-card statut-'+(rdv.statut||'planifie')+'"><div class="rdv-time-block"><div class="rdv-time">'+this.formatTime(rdv.heureDebut)+'</div><div class="rdv-time-end">'+this.formatTime(rdv.heureFin)+'</div>'+(bA>0?'<div class="rdv-buffer-tag">'+icon('car',11)+' '+bA+'m</div>':'')+(bAp>0?'<div class="rdv-buffer-tag">'+icon('car',11)+' '+bAp+'m</div>':'')+'</div><div class="rdv-body"><div class="rdv-name">'+esc(nom)+' <span class="status-badge status-'+(rdv.statut||'planifie')+'">'+CONFIG.STATUTS_RDV[rdv.statut||'planifie']+'</span></div>'+((rdv.prestationsPrevues||[]).length>0?'<div class="rdv-prestations">'+(rdv.prestationsPrevues||[]).map(p=>esc(p)).join(', ')+'</div>':'')+((rdv.adresse||ville)?'<div class="rdv-address">'+icon('map-pin',12)+' '+esc(rdv.adresse||ville)+'</div>':'')+(dep||ret?'<div class="rdv-depart-retour">'+(dep?'<span>Départ: '+dep+'</span>':'')+(ret?'<span>Retour: '+ret+'</span>':'')+'</div>':'')+'</div><div class="rdv-actions">'+((rdv.statut||'planifie')==='planifie'?'<button class="btn btn-ghost btn-sm" onclick="app.quickCompleteRdv(\''+rdv.id+'\')" style="color:var(--success)" title="Marquer terminé">'+icon('check',15)+'</button>':'')+'<button class="btn btn-ghost btn-sm" onclick="app.openRdvForm(\''+rdv.id+'\')">'+icon('edit',15)+'</button><button class="btn btn-ghost btn-sm" onclick="app.deleteRdv(\''+rdv.id+'\')" style="color:var(--danger)">'+icon('trash',15)+'</button></div></div>';
+                });
+                detailHTML+='<button class="btn btn-secondary btn-sm" style="width:100%;margin-top:8px" onclick="app.openRdvForm(null,null,\''+selectedDay+'\')">'+icon('plus',14)+' Ajouter un RDV ce jour</button>';
+            }
+            detailHTML+='</div>';
+        }else{
+            detailHTML='<div style="text-align:center;padding:20px;color:var(--text-muted);font-size:.84rem">'+icon('calendar',20)+'<br>Touchez un jour pour voir les rendez-vous</div>';
+        }
+        view.innerHTML=navHTML+calHTML+detailHTML;
     }
 
     _renderListeAgenda(view,navHTML,days,allRdv,cMap,todayStr){
@@ -3102,7 +3498,7 @@ ${f.notes?'<p style="font-size:.82rem;color:#5F5C6E;margin-bottom:20px"><em>'+es
             daysHTML+='<div class="day-section"><div class="day-header'+(isT?' today':'')+'"><span class="day-date">'+day.getDate()+'</span>'+this.dayName(day)+(isT?' <span class="status-badge status-planifie" style="margin-left:6px">Aujourd\'hui</span>':'')+(rdvs.length>0?'<span style="margin-left:auto;font-size:.72rem;font-weight:600;color:var(--text-muted)">'+rdvs.length+' RDV</span>':'')+'</div>';
             if(rdvs.length===0){daysHTML+='<div class="day-empty">'+(isSun?'Dimanche — repos':'Aucun rendez-vous')+'</div>'}
             else{rdvs.forEach(rdv=>{const cl=cMap[rdv.clientId];const nom=cl?cl.prenom+' '+cl.nom:'Inconnue';const ville=cl&&cl.adresse?cl.adresse.ville:'';const bA=rdv.bufferAvant||0;const bAp=rdv.bufferApres||0;const dep=bA>0?this.subMinutes(rdv.heureDebut,bA):'';const ret=bAp>0?this.addMinutes(rdv.heureFin||rdv.heureDebut,bAp):'';
-                daysHTML+='<div class="rdv-card statut-'+(rdv.statut||'planifie')+'"><div class="rdv-time-block"><div class="rdv-time">'+this.formatTime(rdv.heureDebut)+'</div><div class="rdv-time-end">'+this.formatTime(rdv.heureFin)+'</div>'+(bA>0?'<div class="rdv-buffer-tag">'+icon('car',11)+' '+bA+' min</div>':'')+(bAp>0?'<div class="rdv-buffer-tag">'+icon('car',11)+' '+bAp+' min</div>':'')+'</div><div class="rdv-body"><div class="rdv-client-name">'+esc(nom)+' <span class="status-badge status-'+(rdv.statut||'planifie')+'">'+CONFIG.STATUTS_RDV[rdv.statut||'planifie']+'</span></div>'+((rdv.prestationsPrevues||[]).length>0?'<div class="rdv-prestations">'+(rdv.prestationsPrevues||[]).map(p=>esc(p)).join(', ')+'</div>':'')+((rdv.adresse||ville)?'<div class="rdv-address">'+icon('map-pin',12)+' '+esc(rdv.adresse||ville)+'</div>':'')+(rdv.notes?'<div style="font-size:.72rem;color:var(--text-muted);margin-top:2px;font-style:italic">'+esc(rdv.notes)+'</div>':'')+((dep||ret)?'<div style="font-size:.7rem;color:var(--warning);margin-top:3px">'+(dep?'Départ: '+dep:'')+(dep&&ret?' · ':'')+(ret?'Retour: '+ret:'')+'</div>':'')+'</div><div class="rdv-actions">'+((rdv.statut||'planifie')==='planifie'?'<button class="btn btn-ghost btn-sm" onclick="app.quickCompleteRdv(\''+rdv.id+'\')" style="color:var(--success)" title="Marquer terminé">'+icon('check',15)+'</button>':'')+'<button class="btn btn-ghost btn-sm" onclick="app.openRdvForm(\''+rdv.id+'\')">'+icon('edit',15)+'</button><button class="btn btn-ghost btn-sm" onclick="app.deleteRdv(\''+rdv.id+'\')" style="color:var(--danger)">'+icon('trash',15)+'</button></div></div>';
+                daysHTML+='<div class="rdv-card statut-'+(rdv.statut||'planifie')+'"><div class="rdv-time-block"><div class="rdv-time">'+this.formatTime(rdv.heureDebut)+'</div><div class="rdv-time-end">'+this.formatTime(rdv.heureFin)+'</div>'+(bA>0?'<div class="rdv-buffer-tag">'+icon('car',11)+' '+bA+'m</div>':'')+(bAp>0?'<div class="rdv-buffer-tag">'+icon('car',11)+' '+bAp+'m</div>':'')+'</div><div class="rdv-body"><div class="rdv-name">'+esc(nom)+' <span class="status-badge status-'+(rdv.statut||'planifie')+'">'+CONFIG.STATUTS_RDV[rdv.statut||'planifie']+'</span></div>'+((rdv.prestationsPrevues||[]).length>0?'<div class="rdv-prestations">'+(rdv.prestationsPrevues||[]).map(p=>esc(p)).join(', ')+'</div>':'')+((rdv.adresse||ville)?'<div class="rdv-address">'+icon('map-pin',12)+' '+esc(rdv.adresse||ville)+'</div>':'')+(rdv.notes?'<div style="font-size:.72rem;color:var(--text-muted);margin-top:2px;font-style:italic">'+esc(rdv.notes)+'</div>':'')+(dep||ret?'<div class="rdv-depart-retour">'+(dep?'<span>Départ: '+dep+'</span>':'')+(ret?'<span>Retour: '+ret+'</span>':'')+'</div>':'')+'</div><div class="rdv-actions">'+((rdv.statut||'planifie')==='planifie'?'<button class="btn btn-ghost btn-sm" onclick="app.quickCompleteRdv(\''+rdv.id+'\')" style="color:var(--success)" title="Marquer terminé">'+icon('check',15)+'</button>':'')+'<button class="btn btn-ghost btn-sm" onclick="app.openRdvForm(\''+rdv.id+'\')">'+icon('edit',15)+'</button><button class="btn btn-ghost btn-sm" onclick="app.deleteRdv(\''+rdv.id+'\')" style="color:var(--danger)">'+icon('trash',15)+'</button></div></div>';
             })}
             daysHTML+='</div>';
         }
@@ -3203,39 +3599,174 @@ ${f.notes?'<p style="font-size:.82rem;color:#5F5C6E;margin-bottom:20px"><em>'+es
     /* ================================================================
        FORMULAIRE RDV
        ================================================================ */
-    async openRdvForm(rdvId,presetClientId){
+    /* ================================================================
+       RECHERCHE CLIENTE — composant autocomplété du form RDV
+       ================================================================ */
+    _renderSelectedClient(cl){
+        const ville=cl.adresse&&cl.adresse.ville?cl.adresse.ville:'';
+        const tel=cl.telephone||'';
+        const sub=[ville,tel].filter(Boolean).join(' · ');
+        return '<div class="client-search-selected">'
+            +'<div class="csx-avatar">'+esc(initials(cl.nom,cl.prenom))+'</div>'
+            +'<div class="csx-info"><div class="csx-name">'+esc(cl.prenom)+' '+esc(cl.nom)+'</div>'+(sub?'<div class="csx-sub">'+esc(sub)+'</div>':'')+'</div>'
+            +'<button type="button" class="client-search-clear" onclick="app._clearClientSearch()" aria-label="Changer de cliente">'+icon('x',18)+'</button>'
+            +'</div>';
+    }
+
+    _initClientSearch(clients,onSelect){
+        this._clientSearchList=clients;
+        this._clientSearchOnSelect=onSelect;
+        const input=document.getElementById('fr-client-input');
+        const dropdown=document.getElementById('fr-client-dropdown');
+        if(!input||!dropdown)return;
+        let highlighted=-1;
+        const render=(query)=>{
+            const q=(query||'').trim().toLowerCase();
+            let list=clients;
+            if(q){
+                list=clients.filter(c=>{
+                    const hay=(c.prenom+' '+c.nom+' '+(c.telephone||'')).toLowerCase();
+                    return hay.includes(q);
+                });
+            }
+            if(list.length===0){
+                dropdown.innerHTML='<div class="client-search-empty">Aucune cliente trouvée</div>'
+                    +(q?'<div class="client-search-create" onclick="app._createClientFromSearch(\''+encodeURIComponent(query)+'\')">'+icon('plus',15)+' Créer « '+esc(query)+' »</div>':'');
+                dropdown.classList.add('open');
+                return;
+            }
+            // Grouper par initiale du nom
+            const groups={};
+            list.forEach(c=>{const initiale=(c.nom||c.prenom||'?').charAt(0).toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');if(!groups[initiale])groups[initiale]=[];groups[initiale].push(c)});
+            const sortedKeys=Object.keys(groups).sort((a,b)=>a.localeCompare(b,'fr'));
+            let html='';
+            sortedKeys.forEach(k=>{
+                html+='<div class="client-search-group-label">'+esc(k)+'</div>';
+                groups[k].forEach(c=>{
+                    const ville=c.adresse&&c.adresse.ville?c.adresse.ville:'';
+                    const sub=[ville,c.telephone||''].filter(Boolean).join(' · ');
+                    html+='<div class="client-search-item" data-id="'+c.id+'" onclick="app._selectClientFromSearch(\''+c.id+'\')">'
+                        +'<div class="csi-avatar">'+esc(initials(c.nom,c.prenom))+'</div>'
+                        +'<div class="csi-info"><div class="csi-name">'+esc(c.prenom)+' '+esc(c.nom)+'</div>'+(sub?'<div class="csi-sub">'+esc(sub)+'</div>':'')+'</div>'
+                        +'</div>';
+                });
+            });
+            if(q)html+='<div class="client-search-create" onclick="app._createClientFromSearch(\''+encodeURIComponent(query)+'\')">'+icon('plus',15)+' Créer « '+esc(query)+' »</div>';
+            dropdown.innerHTML=html;
+            dropdown.classList.add('open');
+            highlighted=-1;
+        };
+        input.addEventListener('focus',()=>render(input.value));
+        input.addEventListener('input',()=>render(input.value));
+        // Navigation clavier
+        input.addEventListener('keydown',(e)=>{
+            const items=[...dropdown.querySelectorAll('.client-search-item')];
+            if(e.key==='ArrowDown'){e.preventDefault();highlighted=Math.min(highlighted+1,items.length-1)}
+            else if(e.key==='ArrowUp'){e.preventDefault();highlighted=Math.max(highlighted-1,0)}
+            else if(e.key==='Enter'){e.preventDefault();if(highlighted>=0&&items[highlighted]){this._selectClientFromSearch(items[highlighted].dataset.id)}return}
+            else if(e.key==='Escape'){dropdown.classList.remove('open');return}
+            else return;
+            items.forEach((it,i)=>it.classList.toggle('highlighted',i===highlighted));
+            if(items[highlighted])items[highlighted].scrollIntoView({block:'nearest'});
+        });
+        // Fermer au clic extérieur — retirer l'ancien listener d'abord (anti-fuite)
+        if(this._clientSearchOutside){document.removeEventListener('click',this._clientSearchOutside)}
+        this._clientSearchOutside=(e)=>{
+            const wrap=document.getElementById('fr-client-wrap');
+            if(wrap&&!wrap.contains(e.target))dropdown.classList.remove('open');
+        };
+        document.addEventListener('click',this._clientSearchOutside);
+    }
+
+    _selectClientFromSearch(clientId){
+        const cl=(this._clientSearchList||[]).find(c=>c.id===clientId);
+        if(!cl)return;
+        document.getElementById('fr-client').value=clientId;
+        const selEl=document.getElementById('fr-client-selected');
+        selEl.innerHTML=this._renderSelectedClient(cl);
+        selEl.style.display='';
+        const input=document.getElementById('fr-client-input');
+        input.style.display='none';
+        input.value='';
+        document.getElementById('fr-client-dropdown').classList.remove('open');
+        if(this._clientSearchOnSelect)this._clientSearchOnSelect();
+    }
+
+    _clearClientSearch(){
+        document.getElementById('fr-client').value='';
+        const selEl=document.getElementById('fr-client-selected');
+        selEl.innerHTML='';selEl.style.display='none';
+        const input=document.getElementById('fr-client-input');
+        input.style.display='';input.value='';input.focus();
+    }
+
+    async _createClientFromSearch(encodedName){
+        const name=decodeURIComponent(encodedName).trim();
+        const parts=name.split(' ');
+        const prenom=parts[0]||'';const nom=parts.slice(1).join(' ')||'';
+        // Fermer le dropdown, ouvrir le form client pré-rempli
+        document.getElementById('fr-client-dropdown').classList.remove('open');
+        // Créer directement une cliente minimale et la sélectionner
+        const newCl={id:uuid(),prenom,nom,telephone:'',email:'',adresse:{rue:'',codePostal:'',ville:''},notes:'',creeLe:new Date().toISOString()};
+        await this.db.put(CONFIG.STORES.CLIENTS,newCl);
+        this._clientSearchList.push(newCl);
+        this._clientSearchList.sort((a,b)=>(a.nom+' '+a.prenom).localeCompare(b.nom+' '+b.prenom,'fr',{sensitivity:'base'}));
+        toast('Cliente créée : '+prenom+' '+nom);
+        this._selectClientFromSearch(newCl.id);
+    }
+
+    async _onClientSelected(){
+        const cId=document.getElementById('fr-client').value;
+        const cl=(this._clientSearchList||[]).find(c=>c.id===cId);
+        if(!cl)return;
+        // Pré-remplir l'adresse du RDV depuis la cliente si vide
+        const ai=document.getElementById('fr-adresse');
+        if(cl.adresse&&ai&&!ai.value){const ad=cl.adresse;ai.value=[ad.rue,ad.codePostal,ad.ville].filter(Boolean).join(', ')}
+        // Afficher la dernière prestation de la cliente
+        const lpEl=document.getElementById('rdv-last-presta-wrap');
+        if(lpEl)lpEl.remove();
+        const cFiches=await this.db.getAllByIndex(CONFIG.STORES.FICHES,'clientId',cl.id);
+        if(cFiches.length>0){
+            cFiches.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+            const last=cFiches[0];const fms=last.formules||[];
+            let lpHTML='<div class="rdv-last-presta" id="rdv-last-presta-wrap"><strong>'+icon('scissors',13)+' Dernière visite : '+formatDate(last.date)+(last.tarif?' — '+formatEuros(last.tarif):'')+'</strong>';
+            if((last.prestations||[]).length)lpHTML+='<span>'+last.prestations.join(', ')+'</span>';
+            if(fms.length)lpHTML+='<span style="color:var(--text-muted);font-size:.74rem"> · Formule: '+fms.map(fm=>[fm.marque,fm.teinte,fm.zone].filter(Boolean).join(' ')).join(' / ')+'</span>';
+            lpHTML+='</div>';
+            const psTitle=document.querySelector('.form-section-title');
+            const ph=document.getElementById('rdv-last-presta-placeholder');if(ph){ph.innerHTML=lpHTML}else if(psTitle){psTitle.insertAdjacentHTML('beforebegin',lpHTML)}
+        }
+    }
+
+    async openRdvForm(rdvId,presetClientId,presetDate){
         let rdv=null;if(rdvId)rdv=await this.db.get(CONFIG.STORES.RDV,rdvId);
         const preset=this._rdvFormPreset||{};this._rdvFormPreset=null;
+        if(presetDate)preset.date=presetDate;
         const isE=!!rdv;const clients=await this.db.getAll(CONFIG.STORES.CLIENTS);
-        clients.sort((a,b)=>(a.nom+' '+a.prenom).localeCompare(b.nom+' '+b.prenom));
-        const cOpts=clients.map(c=>'<option value="'+c.id+'"'+((rdv&&rdv.clientId===c.id)||(presetClientId&&c.id===presetClientId)?' selected':'')+'>'+esc(c.prenom)+' '+esc(c.nom)+(c.adresse&&c.adresse.ville?' — '+esc(c.adresse.ville):'')+'</option>').join('');
+        // Tri alphabétique par nom puis prénom
+        clients.sort((a,b)=>(a.nom+' '+a.prenom).localeCompare(b.nom+' '+b.prenom,'fr',{sensitivity:'base'}));
         const sOpts=Object.entries(CONFIG.STATUTS_RDV).map(([k,v])=>'<option value="'+k+'"'+(rdv&&rdv.statut===k?' selected':'')+'>'+v+'</option>').join('');
         const selPs=(rdv&&rdv.prestationsPrevues)||[];
         const psHTML=getPrestations().map(p=>'<label class="checkbox-item"><input type="checkbox" value="'+esc(p)+'"'+(selPs.includes(p)?' checked':'')+'>'+esc(p)+'</label>').join('');
-        const body='<div class="form-group"><label class="form-label">Cliente *</label><select class="form-select" id="fr-client"><option value="">— Sélectionner —</option>'+cOpts+'</select></div><div id="rdv-last-presta-placeholder"></div><div class="form-row"><div class="form-group"><label class="form-label">Date *</label><input type="date" class="form-input" id="fr-date" value="'+(rdv?rdv.date:(preset.date||ymd(new Date())))+'"></div><div class="form-group"><label class="form-label">Statut</label><select class="form-select" id="fr-statut">'+sOpts+'</select></div></div><div class="form-row"><div class="form-group"><label class="form-label">Début *</label><input type="time" class="form-input" id="fr-debut" value="'+(rdv?rdv.heureDebut||'':(preset.heureDebut||'09:00'))+'"></div><div class="form-group"><label class="form-label">Fin</label><input type="time" class="form-input" id="fr-fin" value="'+(rdv?rdv.heureFin||'':(preset.heureFin||'10:30'))+'"></div></div><div class="form-section-title">'+icon('car',16)+' Buffer de trajet <button class=\"btn btn-sm btn-secondary\" id=\"btn-auto-buffer\" type=\"button\" style=\"margin-left:auto\">'+icon('crosshair',14)+' Calculer</button></div><div id=\"buffer-auto-hint\"></div><div class="form-row"><div class="form-group"><label class="form-label">Avant (min)</label><input type="number" min="0" step="5" class="form-input" id="fr-ba" value="'+(rdv?rdv.bufferAvant||0:15)+'"></div><div class="form-group"><label class="form-label">Après (min)</label><input type="number" min="0" step="5" class="form-input" id="fr-bap" value="'+(rdv?rdv.bufferApres||0:15)+'"></div></div><div class="form-section-title">'+icon('scissors',16)+' Prestations</div><div class="checkbox-grid" id="fr-prestations">'+psHTML+'</div><div class="form-group" style="margin-top:10px"><label class="form-label">Adresse du RDV</label><input type="text" class="form-input" id="fr-adresse" value="'+esc(rdv?.adresse||'')+'" placeholder="Vide = adresse de la cliente"></div><div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="fr-notes">'+esc(rdv?.notes||'')+'</textarea></div>';
+        // Cliente pré-sélectionnée
+        const preselId=(rdv&&rdv.clientId)||presetClientId||'';
+        const preselClient=preselId?clients.find(c=>c.id===preselId):null;
+        // Composant de recherche cliente (remplace le <select>)
+        const clientSearchHTML='<div class="client-search-wrap" id="fr-client-wrap">'
+            +'<input type="hidden" id="fr-client" value="'+(preselId||'')+'">'
+            +'<div id="fr-client-selected" style="'+(preselClient?'':'display:none')+'">'
+            +(preselClient?this._renderSelectedClient(preselClient):'')
+            +'</div>'
+            +'<input type="text" class="form-input" id="fr-client-input" placeholder="Rechercher une cliente…" autocomplete="off" style="'+(preselClient?'display:none':'')+'">'
+            +'<div class="client-search-dropdown" id="fr-client-dropdown"></div>'
+            +'</div>';
+        const body='<div class="form-group"><label class="form-label">Cliente *</label>'+clientSearchHTML+'</div><div id="rdv-last-presta-placeholder"></div><div class="form-row"><div class="form-group"><label class="form-label">Date *</label><input type="date" class="form-input" id="fr-date" value="'+(rdv?rdv.date:(preset.date||ymd(new Date())))+'"></div><div class="form-group"><label class="form-label">Statut</label><select class="form-select" id="fr-statut">'+sOpts+'</select></div></div><div class="form-row"><div class="form-group"><label class="form-label">Début *</label><input type="time" class="form-input" id="fr-debut" value="'+(rdv?rdv.heureDebut||'':(preset.heureDebut||'09:00'))+'"></div><div class="form-group"><label class="form-label">Fin</label><input type="time" class="form-input" id="fr-fin" value="'+(rdv?rdv.heureFin||'':(preset.heureFin||'10:30'))+'"></div></div><div class="form-section-title">'+icon('car',16)+' Buffer de trajet <button class=\"btn btn-sm btn-secondary\" id=\"btn-auto-buffer\" type=\"button\" style=\"margin-left:auto\">'+icon('crosshair',14)+' Calculer</button></div><div id=\"buffer-auto-hint\"></div><div class="form-row"><div class="form-group"><label class="form-label">Avant (min)</label><input type="number" min="0" step="5" class="form-input" id="fr-ba" value="'+(rdv?rdv.bufferAvant||0:15)+'"></div><div class="form-group"><label class="form-label">Après (min)</label><input type="number" min="0" step="5" class="form-input" id="fr-bap" value="'+(rdv?rdv.bufferApres||0:15)+'"></div></div><div class="form-section-title">'+icon('scissors',16)+' Prestations</div><div class="checkbox-grid" id="fr-prestations">'+psHTML+'</div><div class="form-group" style="margin-top:10px"><label class="form-label">Adresse du RDV</label><input type="text" class="form-input" id="fr-adresse" value="'+esc(rdv?.adresse||'')+'" placeholder="Vide = adresse de la cliente"></div><div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="fr-notes">'+esc(rdv?.notes||'')+'</textarea></div>';
         const footer='<button class="btn btn-secondary" onclick="app.closeModal()">Annuler</button><button class="btn btn-primary" id="btn-save-rdv">'+(isE?'Enregistrer':'Créer')+'</button>';
         this.openModal(icon(isE?'edit':'calendar',20)+' '+(isE?'Modifier le RDV':'Nouveau RDV'),body,footer);
-        document.getElementById('fr-client').addEventListener('change',async e=>{
-            const cl=clients.find(c=>c.id===e.target.value);
-            const ai=document.getElementById('fr-adresse');
-            if(cl&&cl.adresse&&!ai.value){const ad=cl.adresse;ai.value=[ad.rue,ad.codePostal,ad.ville].filter(Boolean).join(', ')}
-            // Afficher la dernière prestation de la cliente
-            const lpEl=document.getElementById('rdv-last-presta-wrap');
-            if(lpEl)lpEl.remove();
-            if(cl){
-                const cFiches=await this.db.getAllByIndex(CONFIG.STORES.FICHES,'clientId',cl.id);
-                if(cFiches.length>0){
-                    cFiches.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-                    const last=cFiches[0];const fms=last.formules||[];
-                    let lpHTML='<div class="rdv-last-presta" id="rdv-last-presta-wrap"><strong>'+icon('scissors',13)+' Dernière visite : '+formatDate(last.date)+(last.tarif?' — '+formatEuros(last.tarif):'')+'</strong>';
-                    if((last.prestations||[]).length)lpHTML+='<span>'+last.prestations.join(', ')+'</span>';
-                    if(fms.length)lpHTML+='<span style="color:var(--text-muted);font-size:.74rem"> · Formule: '+fms.map(fm=>[fm.marque,fm.teinte,fm.zone].filter(Boolean).join(' ')).join(' / ')+'</span>';
-                    lpHTML+='</div>';
-                    const psTitle=document.querySelector('.form-section-title');
-                    const ph=document.getElementById('rdv-last-presta-placeholder');if(ph){ph.innerHTML=lpHTML}else if(psTitle){psTitle.insertAdjacentHTML('beforebegin',lpHTML)}
-                }
-            }
-        });
+        // Initialiser la recherche cliente
+        this._initClientSearch(clients,()=>this._onClientSelected());
+        // Déclencher le pré-remplissage adresse si cliente présélectionnée
+        if(preselClient)this._onClientSelected();
         document.getElementById('btn-auto-buffer')?.addEventListener('click',async()=>{
             const cId=document.getElementById('fr-client').value;const dt=document.getElementById('fr-date').value;const hd=document.getElementById('fr-debut').value;
             if(!cId||!dt){toast('Sélectionnez une cliente et une date','danger');return}
@@ -3322,25 +3853,101 @@ ${f.notes?'<p style="font-size:.82rem;color:#5F5C6E;margin-bottom:20px"><em>'+es
         document.getElementById('fr-ba').addEventListener('input',checkOverlap);
         document.getElementById('fr-bap').addEventListener('input',checkOverlap);
         showBookedSlots();checkOverlap();
+
+        // ── Bloc "Prestation réalisée" (fiche rapide liée au RDV)
+        // Pré-remplir si une fiche existe déjà pour ce RDV
+        // ficheExistante : cherche d'abord par rdvId (fiches créées depuis ce form)
+        // puis par clientId+date (fiches créées via stepper, sans rdvId) — évite les doublons
+        // getAllLite pour ne pas charger les photos en mémoire inutilement
+        const ficheExistante=rdv?await(async()=>{
+            const fiches=await this.db.getAllLite(CONFIG.STORES.FICHES);
+            return fiches.find(f=>f.rdvId===rdv.id)||fiches.find(f=>f.clientId===rdv.clientId&&f.date===rdv.date);
+        })():null;
+        const ficheRapideHTML='<div class="rdv-fiche-rapide" id="rdv-fiche-rapide">'
+            +'<div class="rdv-fiche-rapide-toggle">'
+            +'<input type="checkbox" id="fr-fiche-active" '+(ficheExistante?'checked':'')+' aria-label="Prévoir prestation">'
+            +'<label for="fr-fiche-active">'+icon('scissors',14)+' Prévoir la prestation et le tarif</label>'
+            +'</div>'
+            +'<div class="rdv-fiche-rapide-body '+(ficheExistante?'':'hidden')+'" id="fr-fiche-body">'
+            +'<div class="form-group"><label class="form-label">Tarif prévu (€)</label><input type="number" min="0" step="0.5" class="form-input" id="fr-fiche-tarif" value="'+(ficheExistante?ficheExistante.tarif||'':'')+'" placeholder="0"></div>'
+            +'<div class="form-group"><label class="form-label">Notes / informations (optionnel)</label><textarea class="form-textarea" id="fr-fiche-notes" rows="2" placeholder="Couleur souhaitée, longueur, contraintes…">'+(ficheExistante?esc(ficheExistante.resultat||ficheExistante.notes||''):'')+'</textarea></div>'
+            // Paiement : visible seulement si RDV déjà passé (ficheExistante) ou RDV édité avec statut terminé
+            +(ficheExistante?'<div class="form-group" id="fr-paiement-wrap"><label class="form-label">Mode de paiement</label><select class="form-select" id="fr-fiche-paiement"><option value=""'+(ficheExistante?.modePaiement?'':' selected')+'>— Non renseigné —</option><option value="especes"'+(ficheExistante?.modePaiement==='especes'?' selected':'')+'>Espèces</option><option value="virement"'+(ficheExistante?.modePaiement==='virement'?' selected':'')+'>Virement</option><option value="cheque"'+(ficheExistante?.modePaiement==='cheque'?' selected':'')+'>Chèque</option><option value="cb"'+(ficheExistante?.modePaiement==='cb'?' selected':'')+'>CB</option></select></div>':'<div id="fr-paiement-wrap" style="display:none"><input id="fr-fiche-paiement" type="hidden" value=""></div>')
+            +'</div></div>';
+        document.getElementById('fr-notes').closest('.form-group').insertAdjacentHTML('afterend',ficheRapideHTML);
+        document.getElementById('fr-fiche-active').addEventListener('change',e=>{
+            document.getElementById('fr-fiche-body').classList.toggle('hidden',!e.target.checked);
+        });
+        // Afficher le mode paiement si on passe le statut à "terminé" manuellement
+        document.getElementById('fr-statut')?.addEventListener('change',e=>{
+            const pWrap=document.getElementById('fr-paiement-wrap');
+            if(!pWrap)return;
+            if(e.target.value==='termine'){
+                pWrap.style.display='';
+                // Ajouter le select s'il n'existe pas encore
+                if(!pWrap.querySelector('select')){
+                    pWrap.innerHTML='<label class="form-label">Mode de paiement</label><select class="form-select" id="fr-fiche-paiement"><option value="">— Non renseigné —</option><option value="especes">Espèces</option><option value="virement">Virement</option><option value="cheque">Chèque</option><option value="cb">CB</option></select>';
+                }
+            }else{
+                pWrap.style.display='none';
+            }
+        });
+
         document.getElementById('btn-save-rdv').addEventListener('click',async()=>{
             const cId=document.getElementById('fr-client').value;const dt=document.getElementById('fr-date').value;const hd=document.getElementById('fr-debut').value;
             if(!cId||!dt||!hd){toast('Cliente, date et heure obligatoires','danger');return}
             const ps=[];document.querySelectorAll('#fr-prestations input:checked').forEach(cb=>ps.push(cb.value));
             const data={id:rdv?rdv.id:uuid(),clientId:cId,date:dt,heureDebut:hd,heureFin:document.getElementById('fr-fin').value||'',bufferAvant:parseInt(document.getElementById('fr-ba').value)||0,bufferApres:parseInt(document.getElementById('fr-bap').value)||0,prestationsPrevues:ps,adresse:document.getElementById('fr-adresse').value.trim(),statut:document.getElementById('fr-statut').value||'planifie',notes:document.getElementById('fr-notes').value.trim(),creeLe:rdv?rdv.creeLe:new Date().toISOString()};
-            await this.db.put(CONFIG.STORES.RDV,data);this.closeModal();toast(isE?'RDV modifié':'RDV créé');
+            await this.db.put(CONFIG.STORES.RDV,data);
+
+            // Créer ou mettre à jour la fiche si activée
+            if(document.getElementById('fr-fiche-active')?.checked){
+                const tarif=parseFloat(document.getElementById('fr-fiche-tarif')?.value)||0;
+                const notes=document.getElementById('fr-fiche-notes')?.value.trim()||'';
+                const modePaiement=document.getElementById('fr-fiche-paiement')?.value||'';
+                // Forcer terminé seulement en édition ou si statut déjà terminé
+                if(isE&&data.statut==='planifie'&&document.getElementById('fr-statut')?.value==='termine'){
+                    data.statut='termine';await this.db.put(CONFIG.STORES.RDV,data);
+                }
+                // Recharger la fiche COMPLÈTE (ficheExistante vient de getAllLite, sans photos)
+                // pour ne jamais écraser photos/notes/formules existantes
+                const ficheComplete=ficheExistante?await this.db.get(CONFIG.STORES.FICHES,ficheExistante.id):null;
+                const fiche={
+                    id:ficheComplete?ficheComplete.id:uuid(),
+                    rdvId:data.id,clientId:cId,date:dt,
+                    prestations:ps.length>0?ps:(ficheComplete?.prestations||[]),
+                    tarif,
+                    modePaiement:modePaiement||ficheComplete?.modePaiement||'',
+                    resultat:notes||ficheComplete?.resultat||'',
+                    notes:ficheComplete?.notes||'',
+                    photos:ficheComplete?.photos||[],
+                    formules:ficheComplete?.formules||[],
+                    natureCheveu:ficheComplete?.natureCheveu||{},
+                    creeLe:ficheComplete?ficheComplete.creeLe:new Date().toISOString()
+                };
+                await this.db.put(CONFIG.STORES.FICHES,fiche).catch(e=>toast('Erreur fiche: '+e.message,'danger'));
+                toast(isE?'RDV et fiche mis à jour':'RDV créé + fiche enregistrée');
+            }else{
+                toast(isE?'RDV modifié':'RDV créé');
+            }
+            this.closeModal();
             if(this.currentView==='client-detail'&&this.currentClientId)this.navigate('client-detail',{clientId:this.currentClientId});
+            else if((localStorage.getItem('agenda_view')||'mois')==='mois')this.renderAgenda(this.currentWeekOffset||0,'mois',this._lastSelectedDay||data.date);
             else this.navigate('agenda',{weekOffset:this.currentWeekOffset||0});
         });
     }
 
-    async deleteRdv(id){this.confirm('Supprimer ce rendez-vous ?',async()=>{await this.db.delete(CONFIG.STORES.RDV,id);toast('RDV supprimé');if(this.currentView==='client-detail'&&this.currentClientId)this.navigate('client-detail',{clientId:this.currentClientId});else this.navigate('agenda',{weekOffset:this.currentWeekOffset||0})})}
+    async deleteRdv(id){this.confirm('Supprimer ce rendez-vous ?',async()=>{await this.db.delete(CONFIG.STORES.RDV,id);toast('RDV supprimé');if(this.currentView==='client-detail'&&this.currentClientId)this.navigate('client-detail',{clientId:this.currentClientId});else if((localStorage.getItem('agenda_view')||'mois')==='mois')this.renderAgenda(this.currentWeekOffset||0,'mois',this._lastSelectedDay);else this.navigate('agenda',{weekOffset:this.currentWeekOffset||0})})}
 
     async quickCompleteRdv(id){
         const rdv=await this.db.get(CONFIG.STORES.RDV,id);if(!rdv)return;
         rdv.statut='termine';
         await this.db.put(CONFIG.STORES.RDV,rdv);
         toast('RDV marqué terminé');
-        if(this.currentView==='agenda')this.navigate('agenda',{weekOffset:this.currentWeekOffset||0});
+        if(this.currentView==='agenda'){
+            if((localStorage.getItem('agenda_view')||'mois')==='mois')this.renderAgenda(this.currentWeekOffset||0,'mois',this._lastSelectedDay);
+            else this.navigate('agenda',{weekOffset:this.currentWeekOffset||0});
+        }
         else this.navigate(this.currentView||'dashboard');
     }
 
@@ -3526,7 +4133,7 @@ ${f.notes?'<p style="font-size:.82rem;color:#5F5C6E;margin-bottom:20px"><em>'+es
         const days=[...daySet].sort().reverse().slice(0,30);
         const dayOpts=days.map(d=>'<option value="'+d+'"'+(d===today?' selected':'')+'>'+formatDateShort(d)+(d===today?' (Aujourd\'hui)':'')+'</option>').join('');
 
-        view.innerHTML='<div id="map-wrap"><div id="map-toolbar"><div class="map-legend">'+icon('map-pin',14)+' <span class="map-legend-dot" style="background:var(--primary)"></span><span class="map-legend-item">Active</span> <span class="map-legend-dot" style="background:var(--border);opacity:.7"></span><span class="map-legend-item">Dormante (+3 mois)</span> <span class="map-legend-dot" style="background:var(--success)"></span><span class="map-legend-item">Parcours</span></div><select class="filter-select" id="map-day-select" style="min-width:180px"><option value="">Toutes les clientes</option>'+dayOpts+'</select><button class="btn btn-sm btn-secondary" id="btn-geocode-all">'+icon('crosshair',14)+' Géocoder</button><span class="map-geocoding-bar hidden" id="map-geocoding-status">…</span></div><div id="map-container"></div><div id="route-summary-wrap"></div></div>';
+        view.innerHTML='<div id="map-wrap"><div id="map-toolbar"><div class="map-legend">'+icon('map-pin',14)+' <span class="map-legend-dot" style="background:var(--primary)"></span><span class="map-legend-item">Active</span> <span class="map-legend-dot" style="background:var(--border);opacity:.7"></span><span class="map-legend-item">Dormante (+3 mois)</span> <span class="map-legend-dot" style="background:var(--success)"></span><span class="map-legend-item">Parcours</span></div><select class="filter-select" id="map-day-select" style="min-width:180px"><option value="">Toutes les clientes</option>'+dayOpts+'</select><button class="btn btn-sm btn-secondary" id="btn-geocode-all">'+icon('crosshair',14)+' Géocoder</button><span class="map-geocoding-bar hidden" id="map-geocoding-status">…</span></div><div id="map-container"></div></div><div id="route-summary-wrap"></div>';
 
         if(this.mapInstance){try{this.mapInstance.remove()}catch(e){}this.mapInstance=null}
         const map=L.map('map-container').setView([46.6,2.5],6);
@@ -3566,11 +4173,33 @@ ${f.notes?'<p style="font-size:.82rem;color:#5F5C6E;margin-bottom:20px"><em>'+es
             const summaryEl=document.getElementById('route-summary-wrap');if(summaryEl)summaryEl.innerHTML='';
 
             if(dayFilter){
+                // Adresse de départ personnelle
+                const departInfo=(() => {try{const raw=localStorage.getItem(CONFIG.LS_KEY_ADRESSE_DEPART);return raw?JSON.parse(raw):null}catch(e){return null}})();
                 const dayRdvs=rdvs.filter(r=>r.date===dayFilter).sort((a,b)=>(a.heureDebut||'').localeCompare(b.heureDebut||''));
+                // Construire les stops depuis les RDV avec coordonnées
                 const stops=[];
-                dayRdvs.forEach(rdv=>{const cl=cMap[rdv.clientId];if(!cl||!cl._lat)return;stops.push({rdv,cl,lat:cl._lat,lng:cl._lng})});
+                dayRdvs.forEach((rdv,idx)=>{
+                    const cl=cMap[rdv.clientId];if(!cl||!cl._lat)return;
+                    stops.push({type:'rdv',rdv,cl,lat:cl._lat,lng:cl._lng});
+                    // Pause après ce RDV (stockée dans le RDV suivant via _pauseAvantProchain)
+                    if(rdv._pauseAvantProchain){
+                        stops.push({type:'pause',label:rdv._pauseAvantProchain.label||'Pause',duree:rdv._pauseAvantProchain.duree||0});
+                    }
+                });
 
-                stops.forEach((s,idx)=>{
+                // Ajouter le point de départ si configuré
+                if(departInfo&&departInfo.lat&&stops.length>0&&stops[0].type==='rdv'){
+                    stops.unshift({type:'depart',label:departInfo.label||'Domicile',lat:departInfo.lat,lng:departInfo.lng});
+                }
+
+                // Afficher barre de départ configurable
+                if(summaryEl){
+                    const departLabel=departInfo?departInfo.label:'Non configuré';
+                    summaryEl.insertAdjacentHTML('beforeend','<div class="route-depart-bar">'+icon('home',14)+'<span>Départ : <strong>'+esc(departLabel)+'</strong></span><button class="btn btn-ghost btn-sm" style="margin-left:auto" onclick="app.openDepartConfig()">'+icon('settings',14)+' Modifier</button></div>');
+                }
+
+                const rdvStops=stops.filter(s=>s.type==='rdv');
+                rdvStops.forEach((s,idx)=>{
                     const cl=s.cl;const rdv=s.rdv;const a=cl.adresse||{};const addr=[a.rue,a.codePostal,a.ville].filter(Boolean).join(', ');
                     const ca=caMap[cl.id]||0;const vis=visMap[cl.id]||0;
                     const popup='<div style="min-width:180px"><strong style="font-size:.9rem">'+(idx+1)+'. '+esc(cl.prenom)+' '+esc(cl.nom)+'</strong>'
@@ -3589,39 +4218,46 @@ ${f.notes?'<p style="font-size:.82rem;color:#5F5C6E;margin-bottom:20px"><em>'+es
 
                 // Other clients faded
                 clients.forEach(c=>{
-                    if(!c._lat||stops.some(s=>s.cl.id===c.id))return;
+                    if(!c._lat||rdvStops.some(s=>s.cl.id===c.id))return;
                     L.circleMarker([c._lat,c._lng],{radius:4,color:'#B4687D',fillColor:'#B4687D',fillOpacity:0.15,weight:1,opacity:0.3}).addTo(markersLayer);
                 });
 
-                // Fetch OSRM real route
-                if(stops.length>=2){
-                    const pts=stops.map(s=>[s.lat,s.lng]);
-                    const route=await self.fetchOSRMRoute(pts);
+                // Points de passage pour OSRM : départ + rdvs (pas les pauses)
+                const routePoints=stops.filter(s=>s.type==='rdv'||s.type==='depart').map(s=>([s.lat,s.lng]));
+
+                if(routePoints.length>=2){
+                    const route=await self.fetchOSRMRoute(routePoints);
                     if(route&&route.geometry){
                         const coords=route.geometry.coordinates.map(c=>[c[1],c[0]]);
                         L.polyline(coords,{color:'#B4687D',weight:4,opacity:0.8}).addTo(routeLayer);
-                        map.fitBounds(L.latLngBounds(pts).pad(0.15));
+                        map.fitBounds(L.latLngBounds(routePoints).pad(0.15));
                         // Summary panel
-                        let stopsHTML='';
+                        let stopsHTML='';let stopNum=0;
+                        let legIdx=0;
                         stops.forEach((s,idx)=>{
-                            const cl=s.cl;const rdv=s.rdv;const a=cl.adresse||{};const addr=[a.rue,a.codePostal,a.ville].filter(Boolean).join(', ');
-                            stopsHTML+='<div class="route-stop"><div class="route-stop-num">'+(idx+1)+'</div><div class="route-stop-info"><div class="route-stop-name">'+esc(cl.prenom)+' '+esc(cl.nom)+'</div>'+(addr?'<div class="route-stop-addr">'+icon('map-pin',11)+' '+esc(addr)+'</div>':'')+'<div class="route-stop-meta"><span>'+icon('clock',11)+' '+(rdv.heureDebut||'?')+(rdv.heureFin?' → '+rdv.heureFin:'')+'</span>'+((rdv.prestationsPrevues||[]).length>0?'<span>'+icon('scissors',11)+' '+rdv.prestationsPrevues.join(', ')+'</span>':'')+'</div></div></div>';
-                            if(idx<stops.length-1&&route.legs[idx]){
-                                stopsHTML+='<div class="route-leg">'+icon('car',12)+' '+self.formatKm(route.legs[idx].distance)+' · '+self.formatDuration(route.legs[idx].duration)+'</div>';
+                            if(s.type==='depart'){
+                                stopsHTML+='<div class="route-stop" style="opacity:.7"><div class="route-stop-num" style="background:var(--accent)">'+icon('home',12)+'</div><div class="route-stop-info"><div class="route-stop-name">'+esc(s.label)+'</div></div></div>';
+                                if(route.legs[legIdx]){stopsHTML+='<div class="route-leg">'+icon('car',12)+' '+self.formatKm(route.legs[legIdx].distance)+' · '+self.formatDuration(route.legs[legIdx].duration)+'</div>';legIdx++;}
+                            }else if(s.type==='pause'){
+                                stopsHTML+='<div class="route-stop pause"><div class="route-stop-num" style="background:var(--border);color:var(--text-muted)">'+icon('coffee',12)+'</div><div class="route-stop-info"><div class="route-stop-name">'+esc(s.label)+'</div>'+(s.duree?'<div class="route-stop-addr">'+s.duree+' min</div>':'')+'</div></div>';
+                            }else if(s.type==='rdv'){
+                                stopNum++;
+                                const cl=s.cl;const rdv=s.rdv;const a=cl.adresse||{};const addr=[a.rue,a.codePostal,a.ville].filter(Boolean).join(', ');
+                                stopsHTML+='<div class="route-stop"><div class="route-stop-num">'+stopNum+'</div><div class="route-stop-info"><div class="route-stop-name">'+esc(cl.prenom)+' '+esc(cl.nom)+'</div>'+(addr?'<div class="route-stop-addr">'+icon('map-pin',11)+' '+esc(addr)+'</div>':'')+'<div class="route-stop-meta"><span>'+icon('clock',11)+' '+(rdv.heureDebut||'?')+(rdv.heureFin?' → '+rdv.heureFin:'')+'</span>'+((rdv.prestationsPrevues||[]).length>0?'<span>'+icon('scissors',11)+' '+rdv.prestationsPrevues.join(', ')+'</span>':'')+'</div></div><button class="btn btn-ghost btn-sm" style="font-size:.7rem" onclick="app.addPauseAfterStop(\''+rdv.id+'\',\''+dayFilter+'\')" title="Ajouter une pause après">'+icon('plus',12)+' Pause</button></div>';
+                                if(idx<stops.length-1&&stops[idx+1].type==='rdv'&&route.legs[legIdx]){stopsHTML+='<div class="route-leg">'+icon('car',12)+' '+self.formatKm(route.legs[legIdx].distance)+' · '+self.formatDuration(route.legs[legIdx].duration)+'</div>';legIdx++;}
                             }
                         });
                         if(summaryEl){
-                            self._lastRoute={stops,route,dayFilter};
-                            const gmapsUrl='https://www.google.com/maps/dir/'+stops.map(s=>s.lat+','+s.lng).join('/');
-                            summaryEl.innerHTML='<div class="route-summary"><div class="route-summary-header"><h4>'+icon('map',18)+' Itinéraire — '+formatDateShort(dayFilter)+'</h4><div class="route-kpis"><div class="route-kpi"><span class="route-kpi-val">'+self.formatKm(route.distance)+'</span><span class="route-kpi-label">Distance</span></div><div class="route-kpi"><span class="route-kpi-val">'+self.formatDuration(route.duration)+'</span><span class="route-kpi-label">Trajet</span></div><div class="route-kpi"><span class="route-kpi-val">'+stops.length+'</span><span class="route-kpi-label">Arrêts</span></div></div><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-sm btn-primary" onclick="app.autoCreateRouteExpenses(app._lastRoute.stops,app._lastRoute.route,app._lastRoute.dayFilter)">'+icon('car',14)+' Créer frais IK</button><a href="'+gmapsUrl+'" target="_blank" rel="noopener" class="btn btn-sm btn-accent" style="text-decoration:none">'+icon('map-pin',14)+' Ouvrir GPS</a></div></div><div class="route-stops">'+stopsHTML+'</div></div>';
+                            self._lastRoute={stops:rdvStops,route,dayFilter};
+                            const gmapsUrl='https://www.google.com/maps/dir/'+routePoints.map(p=>p[0]+','+p[1]).join('/');
+                            summaryEl.insertAdjacentHTML('beforeend','<div class="route-summary"><div class="route-summary-header"><h4>'+icon('map',18)+' Itinéraire — '+formatDateShort(dayFilter)+'</h4><div class="route-kpis"><div class="route-kpi"><span class="route-kpi-val">'+self.formatKm(route.distance)+'</span><span class="route-kpi-label">Distance</span></div><div class="route-kpi"><span class="route-kpi-val">'+self.formatDuration(route.duration)+'</span><span class="route-kpi-label">Trajet</span></div><div class="route-kpi"><span class="route-kpi-val">'+rdvStops.length+'</span><span class="route-kpi-label">Arrêts</span></div></div><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-sm btn-primary" onclick="app.autoCreateRouteExpenses(app._lastRoute.stops,app._lastRoute.route,app._lastRoute.dayFilter)">'+icon('car',14)+' Créer frais IK</button><a href="'+gmapsUrl+'" target="_blank" rel="noopener" class="btn btn-sm btn-accent" style="text-decoration:none">'+icon('map-pin',14)+' Ouvrir GPS</a></div></div><div class="route-stops">'+stopsHTML+'</div></div>');
                         }
                     }else{
-                        // Fallback straight line
-                        L.polyline(pts,{color:'#B4687D',weight:3,opacity:0.5,dashArray:'8 6'}).addTo(routeLayer);
-                        map.fitBounds(L.latLngBounds(pts).pad(0.15));
-                        if(summaryEl)summaryEl.innerHTML='<div style="padding:10px;font-size:.78rem;color:var(--text-muted)">'+icon('zap',14)+' Calcul d\'itinéraire indisponible — trajet affiché en ligne droite.</div>';
+                        L.polyline(routePoints,{color:'#B4687D',weight:3,opacity:0.5,dashArray:'8 6'}).addTo(routeLayer);
+                        map.fitBounds(L.latLngBounds(routePoints).pad(0.15));
+                        if(summaryEl)summaryEl.insertAdjacentHTML('beforeend','<div style="padding:10px;font-size:.78rem;color:var(--text-muted)">'+icon('zap',14)+' Calcul d\'itinéraire indisponible — trajet affiché en ligne droite.</div>');
                     }
-                }else if(stops.length===1){map.setView([stops[0].lat,stops[0].lng],14)}
+                }else if(rdvStops.length===1){map.setView([rdvStops[0].lat,rdvStops[0].lng],14)}
             }else{
                 // All clients mode
                 const bounds=[];
